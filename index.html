@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Clear Eyes">
+<meta name="theme-color" content="#f7f3ec">
+<meta name="description" content="Understanding narcissistic abuse, trauma bonding and recovery. A free, evidence-grounded resource for survivors.">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>Clear Eyes — A Survivor's Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Space+Mono:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#f7f3ec;--ink:#ffffff;--card:#ffffff;--border:rgba(26,29,36,.12);
+  --paper:#1a1d24;--mist:#5c6068;--ghost:#8a8d94;
+  --gold:#8a5e0e;--gold-b:#9a6a12;--gold-pale:rgba(138,94,14,.10);
+  --rose:#a3263c;--rose-b:#a3263c;--rose-pale:rgba(163,38,60,.09);
+  --teal:#0f6b66;--teal-b:#0f6b66;--teal-pale:rgba(15,107,102,.09);
+  --green:#1f6b4a;--green-b:#1f6b4a;--green-pale:rgba(31,107,74,.10);
+  --slate:#5c6068;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --safe-top:env(safe-area-inset-top,0px);
+  --safe-bot:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-text-size-adjust:100%;background:var(--night);scroll-behavior:smooth}
+body{background:var(--night);color:var(--paper);font-family:'Lato',sans-serif;line-height:1.68;overflow-x:hidden;-webkit-touch-callout:none;padding-bottom:max(24px,var(--safe-bot))}
+a{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+button{-webkit-tap-highlight-color:transparent}
+
+.up{opacity:0;transform:translateY(16px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.up.in{opacity:1;transform:none}
+.stag>*{opacity:0;transform:translateY(14px);transition:opacity .55s var(--ease),transform .55s var(--ease)}
+.stag.in>*{opacity:1;transform:none}
+.stag.in>*:nth-child(2){transition-delay:.07s}
+.stag.in>*:nth-child(3){transition-delay:.14s}
+.stag.in>*:nth-child(4){transition-delay:.21s}
+
+/* ---- COVER ---- */
+.cover{
+  min-height:92vh;background:var(--night);
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:28px 22px calc(36px + var(--safe-bot));
+  padding-top:calc(48px + var(--safe-top));
+}
+.cover::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 110% 55% at 82% 8%, rgba(196,136,42,.12), transparent 55%),
+    radial-gradient(ellipse 80%  80% at 10% 90%, rgba(26,92,92,.1), transparent 60%),
+    radial-gradient(ellipse 60%  40% at 50% 50%, rgba(138,48,64,.04), transparent 70%);
+}
+.cover-eyebrow{
+  font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.22em;
+  color:var(--gold);text-transform:uppercase;margin-bottom:18px;
+  display:flex;align-items:center;gap:10px;position:relative;
+}
+.cover-eyebrow::before{content:'';width:22px;height:1px;background:var(--gold);opacity:.55}
+.cover h1{
+  font-family:'Cormorant Garant',serif;font-size:72px;font-weight:700;
+  line-height:.88;color:var(--paper);letter-spacing:-.025em;
+  margin-bottom:20px;position:relative;
+}
+.cover h1 em{font-style:italic;color:var(--gold-b)}
+.cover-rule{width:36px;height:2px;background:var(--gold);margin-bottom:18px;opacity:.65;position:relative}
+.cover-sub{
+  font-family:'Cormorant Garant',serif;font-style:italic;
+  font-size:19px;color:var(--mist);line-height:1.52;
+  max-width:30ch;margin-bottom:22px;position:relative;
+}
+.cover-note{
+  font-family:'Lato',sans-serif;font-size:13px;font-weight:400;
+  color:#5c6068;line-height:2;position:relative;
+}
+.cover-scroll{
+  position:relative;margin-top:28px;
+  display:flex;align-items:center;gap:10px;
+  font-family:'Lato',sans-serif;font-size:12px;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;color:#6b6f77;
+}
+.cover-scroll::before{content:'↓';font-size:14px;color:var(--gold);opacity:.5;animation:bob 2s var(--ease) infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+
+/* ---- REASSURE BAND ---- */
+.reassure{
+  background:var(--teal);padding:26px 22px;
+  border-top:1px solid rgba(42,144,144,.3);
+}
+.reassure p{
+  font-family:'Cormorant Garant',serif;font-style:italic;
+  font-size:20px;line-height:1.55;color:#fff;
+}
+.reassure p strong{font-style:normal;font-weight:700;color:#fff}
+
+/* ---- SECTION ---- */
+.sec{padding:44px 22px}
+.sec+.sec{border-top:1px solid var(--border)}
+.eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.eyebrow-n{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.2em;color:var(--gold);font-weight:700}
+.eyebrow-line{flex:1;height:1px;background:var(--border)}
+.eyebrow-t{font-family:'Lato',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#5c6068}
+h2{font-family:'Cormorant Garant',serif;font-size:36px;font-weight:700;line-height:1.0;letter-spacing:-.01em;margin-bottom:12px;color:var(--paper)}
+h2 em{font-style:italic;color:var(--gold-b)}
+.lead{font-family:'Cormorant Garant',serif;font-style:italic;font-size:17px;color:var(--mist);line-height:1.6;margin-bottom:24px}
+
+/* ---- GUIDE CARDS ---- */
+.guides{display:flex;flex-direction:column;gap:12px;margin-top:6px}
+.guide{
+  display:block;text-decoration:none;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:10px;padding:22px 20px;
+  position:relative;overflow:hidden;
+  transition:border-color .22s,transform .22s;
+  -webkit-tap-highlight-color:transparent;
+}
+.guide:active{transform:scale(.98)}
+.guide::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;
+  width:3px;background:var(--gold);
+}
+.guide.teal::before{background:var(--teal-b)}
+.guide.rose::before{background:var(--rose-b)}
+.guide.green::before{background:var(--green-b)}
+.guide .g-tag{
+  font-family:'Lato',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--gold-b);margin-bottom:10px;display:block;
+}
+.guide.teal .g-tag{color:var(--teal-b)}
+.guide.rose .g-tag{color:var(--rose-b)}
+.guide.green .g-tag{color:var(--green-b)}
+.guide h3{
+  font-family:'Cormorant Garant',serif;font-weight:700;
+  font-size:28px;line-height:1.02;color:var(--paper);
+  margin-bottom:8px;letter-spacing:-.01em;
+}
+.guide h3 em{font-style:italic;color:var(--gold-b)}
+.guide.teal h3 em{color:var(--teal-b)}
+.guide.rose h3 em{color:var(--rose-b)}
+.guide.green h3 em{color:var(--green-b)}
+.guide .g-for{
+  font-family:'Lato',sans-serif;font-size:12px;font-weight:600;
+  letter-spacing:.02em;color:#5c6068;margin-bottom:12px;display:block;
+}
+.guide p{font-size:15.5px;line-height:1.7;color:#33373f;margin-bottom:14px}
+.guide .g-go{
+  font-family:'Lato',sans-serif;font-size:12px;font-weight:700;
+  letter-spacing:.04em;text-transform:uppercase;color:var(--gold-b);
+  display:inline-flex;align-items:center;gap:8px;
+}
+.guide.teal .g-go{color:var(--teal-b)}
+.guide.rose .g-go{color:var(--rose-b)}
+.guide.green .g-go{color:var(--green-b)}
+.guide .g-go::after{content:'→';font-size:14px}
+
+/* ---- HOW TO USE ---- */
+.how{background:var(--ink);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.how-inner{padding:44px 22px}
+.how-steps{display:flex;flex-direction:column;gap:0;margin-top:8px}
+.how-step{display:grid;grid-template-columns:36px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--border);align-items:start}
+.how-step:last-child{border-bottom:none}
+.how-n{
+  font-family:'Cormorant Garant',serif;font-weight:700;font-size:28px;
+  line-height:1;color:var(--gold);opacity:.45;margin-top:2px;
+}
+.how-step h3{font-family:'Cormorant Garant',serif;font-weight:700;font-size:17px;color:var(--paper);margin-bottom:4px;line-height:1.2}
+.how-step p{font-size:15px;line-height:1.7;color:#33373f}
+.how-step p strong{color:var(--paper);font-weight:700}
+
+/* ---- STAT STRIP ---- */
+.stats{display:grid;grid-template-columns:1fr 1fr;background:var(--rose)}
+.stat{padding:20px 16px;border-right:1px solid rgba(26,29,36,.1)}
+.stat:nth-child(2n){border-right:none}
+.stat:nth-child(3),.stat:nth-child(4){border-top:1px solid rgba(26,29,36,.1)}
+.stat-n{font-family:'Cormorant Garant',serif;font-weight:700;font-size:38px;line-height:1;color:var(--paper);margin-bottom:5px;letter-spacing:-.01em}
+.stat-l{font-family:'Lato',sans-serif;font-size:12px;font-weight:500;color:#33373f;line-height:1.6}
+.stat-fn{padding:14px 22px;background:var(--ink);border-bottom:1px solid var(--border)}
+.stat-fn p{font-family:'Lato',sans-serif;font-size:12.5px;line-height:1.74;color:#5c6068;margin-bottom:8px}
+.stat-fn p:last-child{margin-bottom:0}
+
+/* ---- SAFETY BAND ---- */
+.safety-band{
+  background:var(--rose);padding:26px 22px;
+  border-top:1px solid rgba(138,48,64,.4);
+}
+.safety-band .s-label{
+  font-family:'Lato',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.92);margin-bottom:12px;
+}
+.safety-band .s-list{list-style:none}
+.safety-band .s-list li{
+  font-size:16px;line-height:1.6;color:#fff;
+  padding:13px 0;border-bottom:1px solid rgba(255,255,255,.18);
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+}
+.safety-band .s-list li:last-child{border-bottom:none}
+.safety-band .s-n{
+  font-family:'Lato',sans-serif;font-weight:700;font-size:14px;
+  color:#fff;text-align:right;white-space:nowrap;
+}
+
+/* ---- FOOTER ---- */
+footer{
+  background:var(--ink);border-top:1px solid var(--border);
+  padding:28px 22px calc(28px + var(--safe-bot));
+  font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.05em;
+  color:var(--ghost);line-height:2;
+}
+footer strong{color:#6b6f77;font-weight:700}
+footer a{color:var(--ghost);text-decoration:underline}
+
+/* add to homescreen hint */
+.a2hs{
+  display:none;position:fixed;bottom:calc(16px + var(--safe-bot));
+  left:16px;right:16px;z-index:200;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:12px;padding:16px 18px;
+  box-shadow:0 8px 32px rgba(0,0,0,.5);
+}
+.a2hs.show{display:flex;align-items:center;gap:16px}
+.a2hs-text{flex:1;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.06em;line-height:1.8;color:var(--mist);text-transform:uppercase}
+.a2hs-text strong{color:var(--paper);font-weight:700;display:block;margin-bottom:2px;font-size:10px}
+.a2hs-x{background:none;border:1px solid var(--border);color:var(--slate);width:30px;height:30px;border-radius:50%;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+/* ---- LIGHT THEME contrast corrections ---- */
+.reassure, .reassure *{color:#fff}
+.safety-band, .safety-band *{color:#fff}
+.stats .stat-n, .stats .stat-l{color:#fff}
+.stats .stat-l{color:rgba(255,255,255,.86)}
+.cta, a.cta, .cta *{color:#fff}
+.cover{background:var(--night)}            /* now light page color */
+.sitenav{background:rgba(247,243,236,.96)}
+.pb{background:var(--gold)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--teal-b);outline-offset:2px;border-radius:4px}
+/* soft depth for cards on light bg */
+.a2hs,.guide-card,.card{box-shadow:0 1px 3px rgba(26,29,36,.06)}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-eyebrow">A free resource for survivors</div>
+  <h1>CLEAR<br><em>EYES</em></h1>
+  <div class="cover-rule"></div>
+  <p class="cover-sub">Understanding coercive control and trauma bonding — and finding your way out and staying out.</p>
+  <div class="cover-note">
+    Four companion guides · Evidence-grounded · Private &amp; offline-ready<br>
+    All notes stay on your device only
+  </div>
+  <div class="cover-scroll">Scroll to explore</div>
+</header>
+
+<div class="reassure">
+  <p>If you are reading this, something in you already knows. <strong>You are not crazy. You are not too sensitive. You are not the problem.</strong> You are someone trying to understand something that was designed to be confusing.</p>
+</div>
+
+<!-- stats -->
+<div class="stats up">
+  <div class="stat"><div class="stat-n">~7×</div><div class="stat-l">Attempts to leave before final exit*</div></div>
+  <div class="stat"><div class="stat-n">0.5–6%</div><div class="stat-l">Estimated US adult NPD prevalence**</div></div>
+  <div class="stat"><div class="stat-n">43%</div><div class="stat-l">Female survivors report substance-use coercion***</div></div>
+  <div class="stat"><div class="stat-n">0</div><div class="stat-l">Times it was your fault</div></div>
+</div>
+<div class="stat-fn">
+  <p>* Widely cited by advocacy organisations (helpline-collated data, not peer-reviewed). Some cite 8. Treat as illustrative — the point is leaving is rarely one clean event.</p>
+  <p>** DSM-5-TR and most clinical sources estimate ~0.5–5%; the often-quoted 6.2% is the high end of one 2008 survey. Shown as a range.</p>
+  <p>*** Warshaw et al. (2014), National Center on Domestic Violence, Trauma &amp; Mental Health.</p>
+</div>
+
+<!-- how to use -->
+<div class="how">
+  <div class="how-inner">
+    <div class="eyebrow up"><span class="eyebrow-n">→</span><span class="eyebrow-line"></span><span class="eyebrow-t">How to read this</span></div>
+    <h2 class="up">Four guides, one <em>path</em></h2>
+    <p class="lead up">Start wherever you are. There's no wrong entry point.</p>
+    <div class="how-steps stag">
+      <div class="how-step">
+        <div class="how-n">1</div>
+        <div><h3>Start with The Cycle</h3><p>If you're trying to understand what happened — or is happening — start here. The four phases, the seven stages, the brain chemistry. <strong>Why it feels the way it does.</strong></p></div>
+      </div>
+      <div class="how-step">
+        <div class="how-n">2</div>
+        <div><h3>Use The Anchor in crisis</h3><p>If the pull to go back has arrived and you need something to hold onto <strong>right now</strong> — go straight to The Anchor. It was written for that moment.</p></div>
+      </div>
+      <div class="how-step">
+        <div class="how-n">3</div>
+        <div><h3>Check The Undertow early</h3><p>The Undertow is a self-check tool — early-warning signs that the pull is building before it peaks. <strong>Use it regularly while you're in the vulnerable period.</strong></p></div>
+      </div>
+      <div class="how-step">
+        <div class="how-n">4</div>
+        <div><h3>Read Clear Eyes for depth</h3><p>The complete guide — all four parts, including the section on your own struggles being weaponised. If you've been told your drinking or mental health is the reason for the abuse, <strong>this one's especially for you.</strong></p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- guide cards -->
+<section class="sec">
+  <div class="eyebrow up"><span class="eyebrow-n">01</span><span class="eyebrow-line"></span><span class="eyebrow-t">The guides</span></div>
+  <h2 class="up">Choose your <em>starting point</em></h2>
+  <div class="guides stag">
+
+    <a class="guide" href="the-cycle.html">
+      <span class="g-tag">Guide 01</span>
+      <h3>The <em>Cycle</em></h3>
+      <span class="g-for">For understanding what happened</span>
+      <p>The four phases. The seven stages of trauma bonding. Intermittent reinforcement and why it grips so hard. Brain chemistry, tactics, why you can't fix it — and why you were never meant to. The foundation for everything else.</p>
+      <span class="g-go">Read The Cycle</span>
+    </a>
+
+    <a class="guide teal" href="the-anchor.html">
+      <span class="g-tag">Guide 02</span>
+      <h3>The <em>Anchor</em></h3>
+      <span class="g-for">For when the pull comes back</span>
+      <p>Written for the moment the urge to return arrives. A truth card, a screenshot-ready reminder, the feeling vs. the fact, a protocol for if you're contacted, and a private space to write your own reasons.</p>
+      <span class="g-go">Read The Anchor</span>
+    </a>
+
+    <a class="guide rose" href="the-undertow.html">
+      <span class="g-tag">Guide 03</span>
+      <h3>The <em>Undertow</em></h3>
+      <span class="g-for">The self-check tool</span>
+      <p>Early-warning signs in three stages — mood, thinking, action. A checklist to help you recognise when the pull is building before it peaks, so you can interrupt the pattern before it takes hold.</p>
+      <span class="g-go">Read The Undertow</span>
+    </a>
+
+    <a class="guide green" href="clear-eyes.html">
+      <span class="g-tag">Guide 04</span>
+      <h3>Clear <em>Eyes</em></h3>
+      <span class="g-for">The complete guide · All four parts</span>
+      <p>Everything in one place — the cycle, the blame and your own struggles, leaving and staying gone, safety and support. Includes the section on how your drinking or mental-health struggles can be weaponised against you.</p>
+      <span class="g-go">Read Clear Eyes</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- safety numbers -->
+<div class="safety-band">
+  <div class="s-label">If you need help now</div>
+  <ul class="s-list">
+    <li><span>National DV Hotline</span><span class="s-n">1-800-799-7233</span></li>
+    <li><span>Crisis Text Line — text HOME</span><span class="s-n">741741</span></li>
+    <li><span>SAMHSA Helpline</span><span class="s-n">1-800-662-4357</span></li>
+    <li><span>thehotline.org — online chat</span><span class="s-n">24 / 7</span></li>
+  </ul>
+</div>
+
+<footer>
+  <div style="margin-bottom:12px"><strong>Clear Eyes</strong> — A free resource for survivors · 2026</div>
+  <div style="margin-bottom:12px">Grounded in: Dutton &amp; Painter (1981, 1993) · van der Kolk (2014) · Bowlby (1969) · DSM-5-TR · Warshaw et al. (2014) · Melemis (2015)</div>
+  <div>For educational purposes only. Not a substitute for professional care.<br>
+  <strong>All notes you write stay on this device only — nothing is sent anywhere.</strong><br>
+  Emergency: 911 &nbsp;·&nbsp; DV Hotline: 1-800-799-7233</div>
+</footer>
+
+<div class="a2hs" id="a2hs">
+  <div class="a2hs-text"><strong>Save to home screen</strong>Works offline · No app needed · Tap Share → Add to Home Screen</div>
+  <button class="a2hs-x" id="a2hs-x" aria-label="Dismiss">×</button>
+</div>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#080c18"/>
+    <text x="50" y="58" font-family="serif" font-size="36" font-style="italic" fill="#e5a340" text-anchor="middle">CE</text>
+  </svg>
+</template>
+
+<script>
+// register service worker
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(() => {});
+}
+
+// scroll reveal
+const obs = new IntersectionObserver(es => es.forEach(x => {
+  if (x.isIntersecting) { x.target.classList.add('in'); obs.unobserve(x.target); }
+}), {threshold:.08, rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.up,.stag').forEach(el => obs.observe(el));
+addEventListener('load', () => {
+  document.querySelectorAll('.up,.stag').forEach(el => {
+    if (el.getBoundingClientRect().top < innerHeight) el.classList.add('in');
+  });
+});
+
+// add to homescreen hint (iOS Safari)
+const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+const isStandalone = window.navigator.standalone;
+const shown = localStorage.getItem('a2hs-shown');
+if (isIOS && !isStandalone && !shown) {
+  setTimeout(() => document.getElementById('a2hs').classList.add('show'), 12000);
+}
+document.getElementById('a2hs-x').addEventListener('click', () => {
+  document.getElementById('a2hs').classList.remove('show');
+  localStorage.setItem('a2hs-shown', '1');
+});
+</script>
+</body>
+</html>
